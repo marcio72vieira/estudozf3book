@@ -1,0 +1,53 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<?php
+    $this->headTitle('About');
+
+    if($appAparencia == '1') { ?>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo ao Livro<br><?= $appName; ?></h1>
+
+            <p>
+                <?= $appDescription; ?>
+            </p>
+
+            <hr class="my-4">
+
+            <a class="btn btn-primary btn-lg" href="https://github.com/laminas" target="_blank">
+                Check Laminas on GitHub &raquo;
+            </a>
+        </div>
+    <?php
+    } else { ?>
+        <h1>About</h1>
+
+        <p>
+            The Hello World application.
+        </p>
+
+        <p>
+            Application name: <?= $this->escapeHtml($appName); ?>
+        </p>
+        <p>
+            Application name: <?= $this->appName; ?>
+        </p>
+
+        <p>
+            Application description: <?= $this->escapeHtml($appDescription); ?>.
+        </p>
+
+        <p> Utilização de HELPS de VISUALIZAÇÃO</p>
+        <ul>
+            <li><a href="<?= $this->basePath('/'); ?>">Home!</a></li>
+            <li><?= $this->ServerUrl() ?></li>
+            <li><?= $this->Doctype() ?></li>
+        </ul>
+        
+
+    <?php } ?>
+
+
+

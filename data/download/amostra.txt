@@ -1,0 +1,1 @@
+Algum texto do no arquivo para ser lido pela aplicação

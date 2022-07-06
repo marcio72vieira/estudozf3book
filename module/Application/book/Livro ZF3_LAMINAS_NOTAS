@@ -1,0 +1,13 @@
+
+1 - O registro de um novo controller é feito no arquivo de configuração module.confi.php na chave: controllers factories
+	'controllers' => [
+        'factories' => [
+            Controller\IndexController::class => InvokableFactory::class,
+            Controller\DownloadController::class => InvokableFactory::class
+        ],
+    ],
+    
+2 - A configuração de roteamento de um módulo é armazenada no arquivo de configuração module.config.php :
+
+
+
