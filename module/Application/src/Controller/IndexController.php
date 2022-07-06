@@ -74,7 +74,7 @@ class IndexController extends AbstractActionController
     }
     
     
-    // http://localhost:8000/doc/?page=contents.html
+    // http://localhost:8000/doc/?page=contents.html . Esta URL pelo menos apresenta a página com erro 404 padrão da apliação Laminas
     public function docAction() 
     {
         $pageTemplate = 'application/index/doc'.$this->params()->fromRoute('page', 'documentation.phtml');        

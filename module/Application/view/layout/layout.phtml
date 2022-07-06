@@ -59,9 +59,18 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?= $this->url('download', ['action' => 'file', 'name' => 'amostra.txt']) ?>">
+                            <!--Para baixar o arquivo pode ser desta forma absoluta
+                                <a class="nav-link" href="http://localhost:8000/download/file?name=amostra.txt">
                                 Download <span class="sr-only">(current)</span>
-                            </a>
+                            </a> -->
+                            <a class="nav-link"  href="<?= $this->url('download', ['action' => 'file'], ['force_canonical' => true, 
+                                    'query'=>['name'=>'amostra.txt']]); ?>" > 
+                            Download </a>
+                        </li>
+                        <li class="nav-item active">
+                            <!-- A hyperlink to Introduction page -->
+                            <a class="nav-link" href="<?= $this->url('doc', ['page'=>'contents']); ?>">
+                            Conteúdos </a> 
                         </li>
                     </ul>
                 </div>
