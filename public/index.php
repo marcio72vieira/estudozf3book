@@ -5,6 +5,11 @@ declare(strict_types=1);
 use Laminas\Mvc\Application;
 use Laminas\Stdlib\ArrayUtils;
 
+//Para executar esta aplicação digite na URL do seu: http://localhost/zf3/helloworld/public/ 
+//OU em uma janela de terminal, dentro da pasta da sua aplicação: /var/www/html/zf3/helloworld$ 
+//php -S localhost:8000 -t public
+ 
+
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.

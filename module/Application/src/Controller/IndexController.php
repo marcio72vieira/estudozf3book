@@ -81,8 +81,6 @@ class IndexController extends AbstractActionController
     
         $filePath = __DIR__.'/../../view/'.$pageTemplate.'.phtml';
 
-        var_dump($filePath);
-
         if(!file_exists($filePath) || !is_readable($filePath)) {
             $this->getResponse()->setStatusCode(404);
             return;
