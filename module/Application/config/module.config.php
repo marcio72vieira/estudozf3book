@@ -8,6 +8,7 @@ use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\Router\Http\Regex;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+use Application\Route\StaticRoute;
 
 return [
     'router' => [
@@ -76,6 +77,18 @@ return [
                         'action' => 'doc',
                     ],
                     'spec'=>'/doc/%page%.html'
+                ],
+            ],
+            'static' => [
+                'type' => StaticRoute::class,
+                'options' => [
+                    'dir_name'         => __DIR__ . '/../view',
+                    'template_prefix'  => 'application/index/static',
+                    'filename_pattern' => '/[a-z0-9_\-]+/',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'static',
+                    ],                    
                 ],
             ],
         ],

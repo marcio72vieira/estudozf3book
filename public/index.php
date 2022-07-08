@@ -5,9 +5,13 @@ declare(strict_types=1);
 use Laminas\Mvc\Application;
 use Laminas\Stdlib\ArrayUtils;
 
-//Para executar esta aplicação digite na URL do seu: http://localhost/zf3/helloworld/public/ 
+//Para executar esta aplicação digite na URL do seu navegador: http://localhost/zf3/helloworld/public/ 
 //OU em uma janela de terminal, dentro da pasta da sua aplicação: /var/www/html/zf3/helloworld$ 
 //php -S localhost:8000 -t public
+//Caso dê algum problema de não execução da página, ou seja, ela ficar totalmente em branco, siga os passs seguintes
+//1 - em seu terminal, na pasta da aplicação digite: php -S localhost:8000 -t public
+//2 - Acesse os links da página normalmente quando for executada
+//3 - Em outra janela do browse de navegação digite: http://localhost/zf3/helloworld/public/ 
  
 
 /**
