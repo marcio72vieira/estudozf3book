@@ -10,3 +10,15 @@
     background-color: var(--brand-color);
     border-color: var(--brand-color);
 }
+
+/*CSS PERSONALIZADO SEGUINDO AS DICAS DO LIVRO BOOK ZF3*/
+div.app-caption {
+    padding: 25px 0px;    
+    font-size: 3.0em;
+    font-weight: bold;
+    color: #6aacaf
+}
+
+body {
+    padding-bottom: 40px;
+}

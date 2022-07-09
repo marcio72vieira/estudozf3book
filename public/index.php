@@ -12,6 +12,8 @@ use Laminas\Stdlib\ArrayUtils;
 //1 - em seu terminal, na pasta da aplicação digite: php -S localhost:8000 -t public
 //2 - Acesse os links da página normalmente quando for executada
 //3 - Em outra janela do browse de navegação digite: http://localhost/zf3/helloworld/public/ 
+
+/* Versão do bootstrap utilizado nessa versão do LAMINAS: Bootstrap v4.4.1 (https://getbootstrap.com/) */
  
 
 /**

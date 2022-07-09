@@ -72,6 +72,17 @@
                             <a class="nav-link" href="<?= $this->url('doc', ['page'=>'contents']); ?>">
                             Conteúdos </a> 
                         </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Static Menu
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?= $this->url('static', ['page'=>'help']); ?>">Help</a>
+                            <a class="dropdown-item" href="<?= $this->url('barcode'); ?>">Código de Barras</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?= $this->url('administrator'); ?>">Layout Administrativo</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

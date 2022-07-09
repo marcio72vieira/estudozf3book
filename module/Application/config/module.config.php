@@ -91,6 +91,28 @@ return [
                     ],                    
                 ],
             ],
+            //Rota criada para utilização de um segundo layout
+            'administrator' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/administrator',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'administrator',
+                    ],
+                ],
+            ],
+            //Rota criada para utilização do partial-demo
+            'partial-demo' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/partial-demo',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'partial-demo',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

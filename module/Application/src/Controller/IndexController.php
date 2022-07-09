@@ -9,10 +9,32 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 // Add name alias in the beginning of the file para o exemplo do barcode
 use Laminas\Barcode\Barcode;
+//Para alterar o layout de todos os métodos deste controller
+use Laminas\Mvc\MvcEvent;
+
+
 
 class IndexController extends AbstractActionController
 
 {
+    /** 
+   * We override the parent class' onDispatch() method to
+   * set an alternative layout for all actions in this controller. Utilizado com: use Laminas\Mvc\MvcEvent;
+   */
+    public function onDispatch(MvcEvent $e) 
+    {
+        // Call the base class' onDispatch() first and grab the response
+        $response = parent::onDispatch($e);        
+        
+        // Set alternative layout
+        $this->layout()->setTemplate('layout/layout2');                
+        
+        // Return the response
+        return $response;
+    }
+
+
+
     public function indexAction()
     {
         //Template original
@@ -111,6 +133,48 @@ class IndexController extends AbstractActionController
             ]);
         $viewModel->setTemplate($pageTemplate);
         return $viewModel;
+    }
+
+
+    public function administratorAction()
+    {
+        // Use the Layout plugin to access the ViewModel object associated with layout template.
+        $this->layout()->setTemplate('layout/layout2');
+    }
+
+
+    // An action that demonstrates the usage of partial views.
+    public function partialDemoAction() 
+    {
+    $products = [
+        [
+        'id' => 1,
+        'name' => 'Digital Camera',
+        'price' => 99.95,
+        ],
+        [
+        'id' => 2,
+        'name' => 'Tripod',
+        'price' => 29.95,
+        ],
+        [
+        'id' => 3,
+        'name' => 'Camera Case',
+        'price' => 2.99,
+        ],
+        [
+        'id' => 4,
+        'name' => 'Batteries',
+        'price' => 39.99,
+        ],
+        [
+        'id' => 5,
+        'name' => 'Charger',
+        'price' => 29.99,
+        ],
+    ];
+        
+    return new ViewModel(['products' => $products]);
     }
     
 }
