@@ -1,0 +1,159 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+
+use PhpParser\Node\Expr\Cast\Object_;
+
+?>
+<?php  $this->headTitle('NewTamplate'); ?>
+
+<div class="card">
+  <h2 class="card-header">Capítulo 4 -  Dados da requisição ($request = $this->getRequest()</h2>
+  <div class="card-body">
+      <table class="table table-striped table-hover">
+          <tr>
+              <th>Método</th>
+              <th>Descrição</th>
+              <th>Exemplo de uso</th>
+              <th>Resultado</th>
+          </tr>
+          <tr>
+              <td colspan="4"><?= $request; ?></td>
+          </tr>
+          <tr>
+              <td colspan="4"><h4>MÉTODOS DA REQUEST<h4></td>
+          </tr>
+          <tr>
+              <td>isGet()</td>
+              <td>Verifica se a requisição é do tipo GET</td>
+              <td>$request->isGet() ? "Sim" : "Não"</td>
+              <td><?= $request->isGet() ? "Sim" : "Não"; ?></td>
+          </tr>
+          <tr>
+              <td>isPost()</td>
+              <td>Verifica se a requisição é do tipo Post</td>
+              <td>$request->isPost() ? "Sim" : "Não"</td>
+              <td><?= $request->isPost() ? "Sim" : "Não"; ?></td>
+          </tr>
+          <tr>
+              <td>isXmlHTTPRequest()</td>
+              <td>Verifica se a requisição é do tipo XmlHTTPRequest (Ajax)</td>
+              <td>$request->isXmlHTTPRequest() ? "Sim" : "Não"</td>
+              <td><?= $request->isXmlHTTPRequest() ? "Sim" : "Não"; ?></td>
+          </tr>
+          <tr>
+              <td>isFlashRequest()</td>
+              <td>Verifica se a requisição é do tipo FlashRequest</td>
+              <td>$request->isFlashRequest() ? "Sim" : "Não"</td>
+              <td><?= $request->isFlashRequest() ? "Sim" : "Não"; ?></td>
+          </tr>
+          <tr>
+              <td>getMethod()</td>
+              <td>Retorna o método para esta solicitação</td>
+              <td>$request->getMethod()</td>
+              <td><?= $request->getMethod(); ?></td>
+          </tr>
+          <tr>
+              <td>getUriString()</td>
+              <td>Retorna o URI para este objeto de solicitação como uma string</td>
+              <td>$request->getUriString()</td>
+              <td><?= $request->getUriString(); ?></td>
+          </tr>
+          <tr>
+              <td>renderRequestLine()</td>
+              <td>Retorna a linha de solicitação formatada (primeira linha) para esta solicitação HTTP</td>
+              <td>$request->renderRequestLine()</td>
+              <td><?= $request->renderRequestLine(); ?></td>
+          </tr>
+          <tr>
+              <td>toString()</td>
+              <td>Retorna a solicitação HTTP bruta como uma string</td>
+              <td>$request->toString()</td>
+              <td><?= $request->toString(); ?></td>
+          </tr>
+          <tr>
+              <td colspan="4"><h4>PLUG-IN PARAMS DO CONTROLADOR<h4></td>
+          </tr>
+          <tr>
+              <td>$this->params()->fromQuery('var_name', 'default_val')</td>
+              <td>Obtendo uma variável via GET. Se um parâmetro não for encontrado, retorna o $defaultvalor</td>
+              <td>$this->params()->fromQuery('var_name', 'default_val')</td>
+              <td><?= $variavelViaGet ?></td>
+          </tr>
+          <tr>
+              <td>$this->params()->fromPost('var_name', 'default_val')</td>
+              <td>Obtendo uma variável via POST. Se um parâmetro não for encontrado, retorna o $defaultvalor</td>
+              <td>$this->params()->fromPost('var_name', 'default_val')</td>
+              <td><?= $variavelViaPost ?></td>
+          </tr>
+          <tr>
+              <td colspan="4"><h4>MÉTODOS DA RESPONSE<h4></td>
+          </tr>
+          <tr>
+              <td colspan="4"><?= $response; ?></td>
+          </tr>
+          <tr>
+              <td>toString()</td>
+              <td>Renderiza a resposta inteira como string de resposta HTTP.</td>
+              <td>$response->toString()</td>
+              <td><?= $response->toString(); ?></td>
+          </tr>
+          <tr>
+              <td>getStatusCode()</td>
+              <td>Recupera o código de status HTTP</td>
+              <td></td>
+              <td><?= $response->getStatusCode(); ?></td>
+          </tr>
+          <tr>
+              <td>getReasonphrase()</td>
+              <td>Obtém a mensagem de status HTTP</td>
+              <td>$response->getReasonphrase()</td>
+              <td><?= $response->getReasonphrase(); ?></td>
+          </tr>
+          <tr>
+              <td>isForbidden()</td>
+              <td>Verifica se o código de resposta é 403 Forbidden</td>
+              <td>$response->isForbidden() ? "Proibido" : "Liberado"</td>
+              <td><?= $response->isForbidden() ? "Proibido" : "Liberado"; ?></td>
+          </tr>
+          <tr>
+              <td>isNotFound()</td>
+              <td>Verifica se o código de status indica que o recurso não foi encontrado (código de status 404)</td>
+              <td>$response->isNotFound() ? "Não encontrado" : "Encontrado"</td>
+              <td><?= $response->isNotFound() ? "Não encontrado" : "Encontrado"; ?></td>
+          </tr>
+          <tr>
+              <td>$response->getHeaders()</td>
+              <td>Retorna a lista de cabeçalhos de resposta</td>
+              <td>$response->getHeaders()</td>
+              <td><?= var_dump($response->getHeaders()); ?></td>
+          </tr>
+          <tr>
+              <td colspan="4"><h4>HELPERS DE VISUALIZAÇÃO<h4></td>
+          </tr>
+          <tr>
+              <td>$this->basePath()</td>
+              <td>Permite recuperar o caminho base para o aplicativo da web, que é o caminho absoluto para APP_DIR</td>
+              <td>$this->basePath()</td>
+              <td><?= $this->basePath(); ?></td>
+          </tr>
+          <tr>
+              <td>$this->serverUrl()</td>
+              <td>Permite gerar endereços de URL absolutos ou relativos a partir de modelos de visualização interna</td>
+              <td>&lt;a href="&lt? $this->url('about');?&gt" &gt Sobre nós &lt\a&gt</td>
+              <td><a href="">Sobre nós</a></td>
+          </tr>
+          <tr>
+              <td>$this->serverUrl()</td>
+              <td>Recupera o URL da solicitação atual</td>
+              <td>$this->serverUrl()</td>
+              <td><?= $this->serverUrl(); ?></td>
+          </tr>
+      </table>
+        
+      
+  </div>
+</div>
+<br>
+

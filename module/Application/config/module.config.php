@@ -13,6 +13,16 @@ use Application\Route\StaticRoute;
 return [
     'router' => [
         'routes' => [
+            'estudo' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/estudo',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'recoverInformations',
+                    ],
+                ],
+            ],
             'home' => [
                 'type'    => Literal::class,
                 'options' => [
@@ -118,7 +128,8 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            Controller\DownloadController::class => InvokableFactory::class
+            Controller\DownloadController::class => InvokableFactory::class,
+            Controller\EstudoController::class => InvokableFactory::class
         ],
     ],
     'view_manager' => [

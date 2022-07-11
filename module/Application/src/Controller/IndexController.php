@@ -34,11 +34,11 @@ class IndexController extends AbstractActionController
     }
 
 
-
     public function indexAction()
     {
         //Template original
         //return new ViewModel();
+
 
         //Definindo um template diferente para a página de inicialização
         //Definimos explicitamente o caminho e o nome do modelo de visualização para renderização.
@@ -175,6 +175,32 @@ class IndexController extends AbstractActionController
     ];
         
     return new ViewModel(['products' => $products]);
+    }
+
+    public function recoverInformationsAction() 
+    {
+        ##### Dados da Requisição $request
+        // Recuperando todos os dados da Requisição
+        $request = $this->getRequest();
+
+        #####Plug-in Params
+        // Recuperando uma variável enviada via GET, se a variável não for encontrada o valor default será retornado
+        $variavelViaGet = $this->params()->fromQuery('name', 'Não há parâmetro via get name');
+        // Recuperando uma variável enviada via POST, se a variável não for encontrada o valor default será retornado
+        $variavelViaPost = $this->params()->fromPost('name', 'Não há parâmetro via post name');
+
+        ##### Dados da Resposta $response
+        // Recuperando todos os dados da Requisição
+        $response = $this->getResponse(); 
+
+        //Enviando alguns dados capturados e configurados para a view
+        $viewModel = new ViewModel(['request' => $request, 
+                                    'variavelViaGet' => $variavelViaGet,
+                                    'variavelViaPost' => $variavelViaPost,
+                                    'response' => $response]);
+        $viewModel->setTemplate('application/index/estudotemplate');
+
+        return $viewModel;
     }
     
 }
