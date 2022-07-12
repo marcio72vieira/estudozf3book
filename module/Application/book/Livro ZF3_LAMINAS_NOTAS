@@ -9,5 +9,10 @@
     
 2 - A configuração de roteamento de um módulo é armazenada no arquivo de configuração module.config.php :
 
+3 - O zend framework conhece o nome do arquivo de templete para visualização, seguindo a segunte ordem, considerando que cada
+    método deve haver um arquivo de template correspondente
+    modulo/controller/metodo/templatemetodo.phtml
+
+
 
 
