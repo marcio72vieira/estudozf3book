@@ -10,6 +10,7 @@ use Laminas\Router\Http\Regex;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Application\Route\StaticRoute;
 
+
 return [
     'router' => [
         'routes' => [
@@ -155,4 +156,19 @@ return [
         ],
         */
     ],
+    // The following registers our custom view 
+    // helper classes in view plugin manager.
+    'view_helpers' => [
+        'factories' => [
+            View\Helper\Menu::class => InvokableFactory::class,                    
+        ],
+       'aliases' => [
+            'mainMenu' => View\Helper\Menu::class
+       ]
+    ],  
+
+
+
+
+
 ];

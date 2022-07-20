@@ -104,6 +104,51 @@
                     <a href="https://getlaminas.org/">Laminas Project</a> a Series of LF Projects, LLC.
                 </p>
             </footer>
+            <hr>
+            <!-- inicio menu de navegação customizado -->
+            <!-- Navigation bar -->
+            <?php      
+            $this->mainMenu()->setItems([
+                [
+                'id' => 'home',
+                'label' => 'Home',
+                'link' => $this->url('home')
+                ],
+                [
+                'id' => 'downloads',
+                'label' => 'Downloads',
+                'link' => $this->url("application", ['action'=>'downloads'])
+                ],
+                [
+                'id' => 'support',
+                'label' => 'Support',
+                'dropdown' => [
+                    [
+                    'id' => 'documentation',
+                    'label' => 'Documentation',
+                    'link' => $this->url('doc', ['page'=>'contents'])
+                    ],
+                    [
+                    'id' => 'help',
+                    'label' => 'Help',
+                    'link' => $this->url('static', ['page'=>'help'])
+                    ]
+                ]                        
+                ],
+                [
+                'id' => 'about',
+                'label' => 'About',
+                'link' => $this->url('about')
+                ],
+            ]);
+
+            echo $this->mainMenu()->render(); 
+            ?>
+
+            <!-- final menu de navegação customizado -->
+
+
+
         </div>
         <?= $this->inlineScript() ?>
     </body>
