@@ -49,11 +49,10 @@
 
     <?php } ?>
     
-    <?php 
-        $script = <<<EOT
-        $(document).ready(function() {
-            alert('Hello World!');
-        });
-        EOT;
-        $this->inlineScript()->appendScript($script);
+<script type="text/javascript">
+    $(document).ready(function() {
+    // Show a simple alert window with the "Hello World!" text.
+    alert("Hello World!");
+    });
+</script>
 

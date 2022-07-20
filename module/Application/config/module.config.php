@@ -19,7 +19,7 @@ return [
                     'route'    => '/estudo',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'recoverInformations',
+                        'action'     => 'estudo',
                     ],
                 ],
             ],

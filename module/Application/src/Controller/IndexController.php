@@ -21,7 +21,8 @@ class IndexController extends AbstractActionController
    * We override the parent class' onDispatch() method to
    * set an alternative layout for all actions in this controller. Utilizado com: use Laminas\Mvc\MvcEvent;
    */
-    public function onDispatch(MvcEvent $e) 
+
+    /* public function onDispatch(MvcEvent $e) 
     {
         // Call the base class' onDispatch() first and grab the response
         $response = parent::onDispatch($e);        
@@ -32,7 +33,7 @@ class IndexController extends AbstractActionController
         
         // Return the response
         return $response;
-    }
+    } */
 
 
     public function indexAction()
@@ -174,12 +175,17 @@ class IndexController extends AbstractActionController
         'price' => 29.99,
         ],
     ];
-        
+    
+    // O ZF3 sabe automaticamente, que a view que ele deve renderizar possui o mesmo nome da action, a mesno que
+    // uma nova view seja especificada explicitamente
     return new ViewModel(['products' => $products]);
     }
 
-    public function recoverInformationsAction() 
+    public function estudoAction() 
     {
+        ##### Definindo um layout(template) alternativo para esta action
+        $this->layout()->setTemplate('layout/layout2');
+
         ##### Dados da Requisição $request
         // Recuperando todos os dados da Requisição
         $request = $this->getRequest();
