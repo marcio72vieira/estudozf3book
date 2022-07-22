@@ -124,6 +124,17 @@ return [
                     ],
                 ],
             ],
+             // Add the following routing rule for the "Contact Us" page 
+             'contactus' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/contactus',
+                    'defaults' => [
+                    'controller' => Controller\IndexController::class,
+                    'action'     => 'contactus',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

@@ -209,5 +209,24 @@ class IndexController extends AbstractActionController
 
         return $viewModel;
     }
+
+    // This action displays the feedback form
+    public function contactUsAction() 
+    {
+        // Check if user has submitted the form
+        if($this->getRequest()->isPost()) {
+        
+        // Retrieve form data from POST variables
+        $data = $this->params()->fromPost();     
+        
+        // ... Do something with the data ...
+        var_dump($data);	  
+        } 
+            
+        // Pass form variable to view
+        return new ViewModel([
+            'form' => $form
+        ]);
+    }
     
 }

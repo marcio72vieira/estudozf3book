@@ -15,7 +15,7 @@
         "laminas/laminas-development-mode": "^3.2",
         "laminas/laminas-skeleton-installer": "^0.6",
         "laminas/laminas-mvc": "^3.1.1",
-        "laminas/laminas-mvc-form": "^2.0.0",
+        "laminas/laminas-mvc-form": "^2.0",
         "laminas/laminas-barcode": "^2.11"
     },
     "autoload": {
