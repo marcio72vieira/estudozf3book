@@ -12,6 +12,8 @@ use Laminas\Barcode\Barcode;
 //Para alterar o layout de todos os métodos deste controller
 use Laminas\Mvc\MvcEvent;
 
+use Application\Form\ContactForm;
+
 
 
 class IndexController extends AbstractActionController
@@ -210,6 +212,7 @@ class IndexController extends AbstractActionController
         return $viewModel;
     }
 
+    /* 
     // This action displays the feedback form
     public function contactUsAction() 
     {
@@ -231,4 +234,37 @@ class IndexController extends AbstractActionController
             'form' => $form
         ]);
     }
+    */
+
+    // This action displays the feedback form
+  public function contactUsAction() 
+  {
+    // Create Contact Us form
+    $form = new ContactForm();
+        
+    // Check if user has submitted the form
+    if($this->getRequest()->isPost()) {
+      // Fill in the form with POST data
+      $data = $this->params()->fromPost();            
+      $form->setData($data);
+            
+      // Validate form
+      if($form->isValid()) {
+                
+        // Get filtered and validated data
+        $data = $form->getData();
+                
+        // ... Do something with the validated data ...
+		
+        // Redirect to "Thank You" page
+        return $this->redirect()->toRoute('application', ['action'=>'thankYou']);
+      }            
+    } 
+        
+    // Pass form variable to view
+    return new ViewModel([
+          'form' => $form
+       ]);
+  }
+
 }

@@ -33,13 +33,13 @@ class ContactForm extends Form
     // Add "email" field
     $this->add([
 	        'type'  => 'text',
-            'name' => 'email',
-            'attributes' => [                
+          'name' => 'email',
+          'attributes' => [                
                 'id' => 'email'
-            ],
-            'options' => [
-                'label' => 'Your E-mail',
-            ],
+          ],
+          'options' => [
+              'label' => 'Your E-mail',
+          ],
         ]);
         
     // Add "subject" field
