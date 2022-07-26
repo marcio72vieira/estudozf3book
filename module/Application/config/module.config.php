@@ -131,7 +131,7 @@ return [
                     'route'    => '/contactus',
                     'defaults' => [
                     'controller' => Controller\IndexController::class,
-                    'action'     => 'contactus',
+                    'action'     => 'contactUs',
                     ],
                 ],
             ],

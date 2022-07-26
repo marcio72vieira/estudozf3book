@@ -216,11 +216,14 @@ class IndexController extends AbstractActionController
         // Check if user has submitted the form
         if($this->getRequest()->isPost()) {
         
-        // Retrieve form data from POST variables
-        $data = $this->params()->fromPost();     
-        
-        // ... Do something with the data ...
-        var_dump($data);	  
+            // Retrieve form data from POST variables
+            $data = $this->params()->fromPost(); 
+            $data["Tipo Requisição"] = "POST";
+            
+            // ... Do something with the data ...
+            //var_dump($data);
+            echo "<pre>"; var_dump($data); echo "</pre>";
+            //echo "<pre>"; var_dump($this->getRequest()); echo "</pre>";
         } 
             
         // Pass form variable to view
@@ -228,5 +231,4 @@ class IndexController extends AbstractActionController
             'form' => $form
         ]);
     }
-    
 }
