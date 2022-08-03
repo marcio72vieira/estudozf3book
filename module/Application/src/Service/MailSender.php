@@ -12,6 +12,7 @@ class MailSender
   public function sendMail($sender, $recipient, $subject, $text) 
   {
     $result = false;
+    
     try {
         
       // Create E-mail message

@@ -14,11 +14,21 @@ use Laminas\Mvc\MvcEvent;
 
 use Application\Form\ContactForm;
 
+use Application\Service\MailSender;
 
 
 class IndexController extends AbstractActionController
 
 {
+    private $mailSender;
+    
+    public function __construct($mailSender) 
+    {
+        $this->mailSender = $mailSender;
+    }
+
+
+
     /** 
    * We override the parent class' onDispatch() method to
    * set an alternative layout for all actions in this controller. Utilizado com: use Laminas\Mvc\MvcEvent;
@@ -236,7 +246,8 @@ class IndexController extends AbstractActionController
     }
     */
 
-    // This action displays the feedback form
+  /*
+  // This action displays the feedback form
   public function contactUsAction() 
   {
     // Create Contact Us form
@@ -265,6 +276,64 @@ class IndexController extends AbstractActionController
     return new ViewModel([
           'form' => $form
        ]);
+  }
+  */
+
+  public function contactUsAction() 
+  {
+    // Create Contact Us form
+    $form = new ContactForm();
+        
+    // Check if user has submitted the form
+    if($this->getRequest()->isPost()) {
+            
+      // Fill in the form with POST data
+      $data = $this->params()->fromPost();            
+            
+      $form->setData($data);
+            
+      // Validate form
+      if($form->isValid()) {
+                
+        // Get filtered and validated data
+        $data = $form->getData();
+        $email = $data['email'];
+        $subject = $data['subject'];
+        $body = $data['body'];
+                
+        // Send E-mail
+        if(!$this->mailSender->sendMail('no-reply@example.com', $email, 
+                        $subject, $body)) {
+          // In case of error, redirect to "Error Sending Email" page
+          return $this->redirect()->toRoute('application', 
+                        ['action'=>'sendError']);
+        }
+                
+        // Redirect to "Thank You" page
+        return $this->redirect()->toRoute('application', 
+                        ['action'=>'thankYou']);
+      }            
+    } 
+        
+    // Pass form variable to view
+    return new ViewModel([
+      'form' => $form
+    ]);
+  }
+
+
+  // This action displays the Thank You page. The user is redirected to this
+  // page on successful mail delivery.
+  public function thankYouAction()
+  {
+      return new ViewModel();
+  }
+
+  // This action displays the Send Error page. The user is redirected to this
+  // page on mail delivery error.
+  public function sendErrorAction() 
+  {
+    return new ViewModel();
   }
 
 }

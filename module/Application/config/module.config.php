@@ -139,7 +139,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            //Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\DownloadController::class => InvokableFactory::class,
             Controller\EstudoController::class => InvokableFactory::class
         ],
@@ -177,6 +178,11 @@ return [
             'mainMenu' => View\Helper\Menu::class
        ]
     ],  
+    'service_manager' => [
+        'factories' => [
+            Service\MailSender::class => InvokableFactory::class,
+        ],
+    ],
 
 
 
