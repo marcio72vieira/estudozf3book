@@ -6,10 +6,9 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\MailSender;
 use Application\Controller\IndexController;
 
-class IndexControllerFactory
+class IndexControllerFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, 
-                             $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $mailSender = $container->get(MailSender::class);
         

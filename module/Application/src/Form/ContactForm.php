@@ -56,7 +56,7 @@ class ContactForm extends Form
         
     // Add "body" field
     $this->add([
-            'type'  => 'text',
+            'type'  => 'textarea',
             'name' => 'body',			
             'attributes' => [                
 			  'id' => 'body'
@@ -113,7 +113,7 @@ class ContactForm extends Form
            [
             'name' => 'StringLength',
               'options' => [
-                'min' => 1,
+                'min' => 5,
                 'max' => 128
               ],
            ],
@@ -131,7 +131,7 @@ class ContactForm extends Form
           [
             'name' => 'StringLength',
             'options' => [
-              'min' => 1,
+              'min' => 5,
               'max' => 4096
             ],
           ],

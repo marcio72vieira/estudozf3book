@@ -60,3 +60,14 @@ body {
 .tt-suggestion p {
   margin: 0;
 }
+
+/* Estilizando as mensagens de Erros nos formulários*/
+form ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px 5px;
+}
+
+form ul li {    
+  color: red;        
+}

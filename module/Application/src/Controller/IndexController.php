@@ -20,13 +20,14 @@ use Application\Service\MailSender;
 class IndexController extends AbstractActionController
 
 {
+    /* 
     private $mailSender;
     
     public function __construct($mailSender) 
     {
         $this->mailSender = $mailSender;
     }
-
+    */
 
 
     /** 
@@ -301,6 +302,7 @@ class IndexController extends AbstractActionController
         $subject = $data['subject'];
         $body = $data['body'];
                 
+        /*
         // Send E-mail
         if(!$this->mailSender->sendMail('no-reply@example.com', $email, 
                         $subject, $body)) {
@@ -308,7 +310,8 @@ class IndexController extends AbstractActionController
           return $this->redirect()->toRoute('application', 
                         ['action'=>'sendError']);
         }
-                
+        */
+
         // Redirect to "Thank You" page
         return $this->redirect()->toRoute('application', 
                         ['action'=>'thankYou']);
