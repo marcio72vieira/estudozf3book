@@ -87,7 +87,11 @@ class ContactForm extends Form
         'name'     => 'email',
         'required' => true,
         'filters'  => [
-           ['name' => 'StringTrim'],                    
+           ['name' => 'StringTrim',
+            'options' => [                  // adicionado por mim
+               'charlist' => "\r\n\t "      // adicionado por mim
+             ]                              // adicionado por mim	 
+           ],                    
         ],                
         'validators' => [
            [
