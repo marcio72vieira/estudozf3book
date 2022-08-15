@@ -15,6 +15,7 @@ use Laminas\Mvc\MvcEvent;
 use Application\Form\ContactForm;
 
 use Application\Service\MailSender;
+use Application\Filter\PhoneFilter;
 
 
 class IndexController extends AbstractActionController
@@ -338,5 +339,25 @@ class IndexController extends AbstractActionController
   {
     return new ViewModel();
   }
+
+  // Fazendo uso do filtro de telefone diretamente
+  public function outputphonefilterAction()
+  {
+      // Create PhoneFilter filter.
+      $filter = new PhoneFilter();
+
+      // Configure the filter.
+      $filter->setFormat(PhoneFilter::PHONE_FORMAT_INTL);
+
+      // Filter a string.
+      $filteredValue = $filter->filter('559832519244');
+
+      echo $filteredValue;
+
+      // The expected filter's output is the '+55 (98) 3251-9244'.
+      return new ViewModel(['phoneTranformed' => $filteredValue]);
+
+    }
+
 
 }

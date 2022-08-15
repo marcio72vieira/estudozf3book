@@ -135,6 +135,17 @@ return [
                     ],
                 ],
             ],
+            // Exemplo do output do fone filter
+            'outputphonefilter' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/outputphonefilter',
+                    'defaults' => [
+                    'controller' => Controller\IndexController::class,
+                    'action'     => 'outputphonefilter',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

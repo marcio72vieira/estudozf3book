@@ -6,6 +6,11 @@ $form->get('email')->setAttributes([
   'class'=>'form-control', 
   'placeholder'=>'name@example.com'
   ]);
+
+$form->get('phone')->setAttributes([
+  'class'=>'form-control', 
+  'placeholder'=>'9 (999) 999-9999 '
+  ]);
   
 $form->get('subject')->setAttributes([
   'class'=>'form-control', 
@@ -17,6 +22,7 @@ $form->get('body')->setAttributes([
   'rows'=>6, 
   'placeholder'=>'Type message text here'
   ]);
+
   
 $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
 ?>
@@ -36,6 +42,12 @@ $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
       <?= $this->formLabel($form->get('email')); ?>
       <?= $this->formElement($form->get('email')); ?>
       <?= $this->formElementErrors($form->get('email')); ?>
+    </div>
+
+    <div class="form-group">
+      <?= $this->formLabel($form->get('phone')); ?>
+      <?= $this->formElement($form->get('phone')); ?>
+      <?= $this->formElementErrors($form->get('phone')); ?>
     </div>
         
     <div class="form-group">
