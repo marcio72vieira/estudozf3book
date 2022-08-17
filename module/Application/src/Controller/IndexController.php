@@ -299,6 +299,7 @@ class IndexController extends AbstractActionController
                 
         // Get filtered and validated data
         $data = $form->getData();
+        $name = $data['name'];
         $email = $data['email'];
         $subject = $data['subject'];
         $body = $data['body'];
@@ -314,20 +315,39 @@ class IndexController extends AbstractActionController
         */
 
         // Redirect to "Thank You" page
-        return $this->redirect()->toRoute('application', 
-                        ['action'=>'thankYou']);
+        // return $this->redirect()->toRoute('application', 
+        //                ['action'=>'thankYou']);
+
+        //Definindo a página de Agradecimento juntamente, passando para ela os dados digitados no formulário
+        //Juntamente com os dados digitados, é passado também o número de telefone já filtrado no formato 
+        //Internacional. Este trecho de código, está subistituindo o trecho logo acima que invoca o método
+        //thankYouAction, através do método redirect()->toRoute().
+
+        // Create PhoneFilter filter.
+        $filter = new PhoneFilter();
+        // Configure the filter.
+        $filter->setFormat(PhoneFilter::PHONE_FORMAT_INTL);
+        // Filter a string.
+        $data['phone'] = $filter->filter($data['phone']);
+
+
+        $viewModel = new ViewModel(['data' => $data]);
+	    $viewModel->setTemplate('application/index/thankobrigado');
+        return $viewModel;
+       
       }            
     } 
         
-    // Pass form variable to view
+    // Pass form variable to view Caso os dados não passarem na validação
     return new ViewModel([
       'form' => $form
     ]);
   }
 
 
+
   // This action displays the Thank You page. The user is redirected to this
-  // page on successful mail delivery.
+  // page on successful mail delivery. A parte do email deliveri foi comentada no método anterior
   public function thankYouAction()
   {
       return new ViewModel();
@@ -340,7 +360,10 @@ class IndexController extends AbstractActionController
     return new ViewModel();
   }
 
+
   // Fazendo uso do filtro de telefone diretamente
+  // Digite na URL do navegador: http://localhost/zf3/estudozf3book/public/application/outputphonefilter
+  // Para executar esta ação
   public function outputphonefilterAction()
   {
       // Create PhoneFilter filter.
@@ -352,7 +375,7 @@ class IndexController extends AbstractActionController
       // Filter a string.
       $filteredValue = $filter->filter('559832519244');
 
-      echo $filteredValue;
+      //echo $filteredValue;
 
       // The expected filter's output is the '+55 (98) 3251-9244'.
       return new ViewModel(['phoneTranformed' => $filteredValue]);

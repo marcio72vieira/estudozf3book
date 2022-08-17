@@ -30,6 +30,18 @@ class ContactForm extends Form
   // submit button).
   private function addElements() 
   {
+    // Add "name" field
+    $this->add([
+      'type'  => 'text',
+      'name' => 'name',
+      'attributes' => [
+        'id' => 'name'
+      ],
+      'options' => [
+        'label' => 'Name',
+      ],
+    ]);
+
     // Add "email" field
     $this->add([
       'type'  => 'text',
@@ -95,7 +107,29 @@ class ContactForm extends Form
   {
     // Get the default input filter attached to form model.
     $inputFilter = $this->getInputFilter();
-        
+
+    $inputFilter->add([
+      'name'     => 'name',
+      'required' => true,
+      'filters'  => [
+         ['name' => 'StringTrim',
+          'options' => [                  // adicionado por mim
+             'charlist' => "\r\n\t "      // adicionado por mim
+           ]                              // adicionado por mim	 
+         ],                    
+      ],                
+      'validators' => [
+        [
+         'name' => 'StringLength',
+           'options' => [
+             'min' => 5,
+             'max' => 20
+           ],
+        ],
+     ],
+    ]
+  );
+
     $inputFilter->add([
         'name'     => 'email',
         'required' => true,

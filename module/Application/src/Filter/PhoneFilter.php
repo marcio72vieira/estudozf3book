@@ -74,6 +74,7 @@ class PhoneFilter extends AbstractFilter
                      substr($digits, 2, 2) . ') ' .
                      substr($digits, 4, 4) . '-' . 
                      substr($digits, 8, 4);
+
     } else { // self::PHONE_FORMAT_LOCAL
       // Pad with zeros if the number of digits is incorrect.
       $digits = str_pad($digits, 7, "0", STR_PAD_LEFT);
