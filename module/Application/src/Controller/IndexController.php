@@ -323,6 +323,7 @@ class IndexController extends AbstractActionController
         //Internacional. Este trecho de código, está subistituindo o trecho logo acima que invoca o método
         //thankYouAction, através do método redirect()->toRoute().
 
+        //Fazendo uso da classe PhoneFiter em: /var/www/html/zf3/estudozf3book/module/Application/src/Filter/PhoneFilter.php
         // Create PhoneFilter filter.
         $filter = new PhoneFilter();
         // Configure the filter.

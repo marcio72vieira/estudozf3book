@@ -24,7 +24,8 @@ class PhoneValidator extends AbstractValidator
   // Validation failure messages.
   protected $messageTemplates = [
     self::NOT_SCALAR  => "The phone number must be a scalar value",
-    self::INVALID_FORMAT_INTL => "The phone number must be in international format",
+    //self::INVALID_FORMAT_INTL => "The phone number must be in international format",
+    self::INVALID_FORMAT_INTL => "The phone number must be in international format +99 (99) 9999-9999",
     self::INVALID_FORMAT_LOCAL => "The phone number must be in local format",
   ];
     
@@ -68,10 +69,22 @@ class PhoneValidator extends AbstractValidator
     $format = $this->options['format'];
     
     // Determine the correct length and pattern of the phone number,
-    // depending on the format.            
+    // depending on the format.              
     if($format == self::PHONE_FORMAT_INTL) {
-      $correctLength = 16;
-      $pattern = '/^\d \(\d{3}\) \d{3}-\d{4}$/';
+      //Validação original: 1 (808) 456-7890
+      //$correctLength = 16;
+      //$pattern = '/^\d \(\d{3}\) \d{3}-\d{4}$/';
+
+      //Validação editada por mim:
+      //Expressao Regular:  +55 (98) 3251-9142
+      //inicio da expressão: '/^; 
+      //sinal de adição, seguido de dois digitos e um espaço em branco: \+\d{2} ;
+      //abertura de parênteses, seguido de dois digitos mais fechamento de parênteses seguido de um espaço em branco: \(\d{2}\) ;
+      //quatro digitos, seguido por um traço e mais quatro digitos: \d{4}-\d{4};
+      //fim da expressão: $/';
+      $correctLength = 18;
+      $pattern = '/^\+\d{2} \(\d{2}\) \d{4}-\d{4}$/';
+
     } else { // self::PHONE_FORMAT_LOCAL
       $correctLength = 8;
       $pattern = '/^\d{3}-\d{4}$/';

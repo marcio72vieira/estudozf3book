@@ -3,6 +3,8 @@ namespace Application\Form;
 
 use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilter;
+use Application\Filter\PhoneFilter;
+use Application\Validator\PhoneValidator;
 
 /**
  * This form is used to collect user feedback data like user E-mail, 
@@ -95,7 +97,7 @@ class ContactForm extends Form
         'id' => 'phone'
       ],
       'options' => [
-        'label' => 'Your Phone',
+        'label' => 'Your Phone. (only numbers)',
       ],
     ]);
 
@@ -195,7 +197,7 @@ class ContactForm extends Form
       'name'     => 'phone',
       'required' => true,
       'filters'  => [                    
-        [
+        /*[ // Fazendo uso do método filterPhone aqui nessa própria classe
           'name' => 'Callback',
           'options' => [
             'callback' => [$this, 'filterPhone'],
@@ -203,13 +205,51 @@ class ContactForm extends Form
               'format' => 'intl'
             ]
           ]                        
-        ],
-      ],                                
+        ],*/
+
+        [   //Fazendo uso da classe PhoneFiter em: /var/www/html/zf3/estudozf3book/module/Application/src/Filter/PhoneFilter.php
+            'name' => PhoneFilter::class,
+            'options' => [
+                'format' => PhoneFilter::PHONE_FORMAT_INTL
+            ]
+        ],    
+      ], 
+      
+      'validators' => [
+          [
+              'name'    => 'StringLength',
+              'options' => [
+                  'min' => 3,
+                  'max' => 32
+              ],
+          ],
+          /*[ // Fazendo uso do método filterPhone aqui nessa própria classe
+              'name' => 'Callback',
+              'options' => [
+                  'callback' => [$this, 'validatePhone'],
+                  'callbackOptions' => [
+                      'format' => 'intl'
+                  ]
+              ]                        
+          ],*/
+          [   //Fazendo uso da classe PhoneFiter em: /var/www/html/zf3/estudozf3book/module/Application/src/Validator/PhoneValidator.php
+              'name' => PhoneValidator::class,
+              'options' => [
+                  'format' => PhoneValidator::PHONE_FORMAT_INTL
+              ]                        
+          ],
+      ],
+
     ]);
     
   }
 
-
+  /**
+     * Custom filter for a phone number.
+     * @param string $value User-entered phone number.
+     * @param string $format Desired phone format ('intl' or 'local').
+     * @return string Phone number in form of "1 (808) 456-7890" or "123-4567".
+     */
   // Custom filter for a phone number.
   public function filterPhone($value, $format) 
   {
@@ -247,6 +287,44 @@ class ContactForm extends Form
         
     return $phoneNumber;               
   }
+
+
+
+  /**
+     * Custom validator for a phone number.
+     * @param string $value Phone number in form of "1 (808) 456-7890"
+     * @params array $context Form field values.
+     * @param string $format Phone format ('intl' or 'local').
+     * @return boolean true if phone format is correct; otherwise false.
+     */
+    public function validatePhone($value, $context, $format) {
+                
+      // Determine the correct length and pattern of the phone number,
+      // depending on the format.
+      if($format == 'intl') {
+          $correctLength = 16;
+          $pattern = '/^\d\ (\d{3}\) \d{3}-\d{4}$/';
+      } else { // 'local'
+          $correctLength = 8;
+          $pattern = '/^\d{3}-\d{4}$/';
+      }
+              
+      // Check phone number length.
+      if(strlen($value)!=$correctLength)
+          return false;
+
+      // Check if the value matches the pattern.
+      $matchCount = preg_match($pattern, $value);
+      
+      return ($matchCount!=0)?true:false;
+    }
+
+
+
+
+
+
+
     
 
 }

@@ -69,7 +69,7 @@ class PhoneFilter extends AbstractFilter
       // Pad with zeros if the number of digits is incorrect.
       $digits = str_pad($digits, 11, "0", STR_PAD_LEFT);
 
-      // Add the braces, the spaces, and the dash. Exemplo: 559832519244 (Alterado por mim)
+      // Add the braces, the spaces, and the dash. Exemplo: 559832519142 (Alterado por mim)
       $phoneNumber = '+'.substr($digits, 0, 2) . ' (' . 
                      substr($digits, 2, 2) . ') ' .
                      substr($digits, 4, 4) . '-' . 
